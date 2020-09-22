@@ -5,7 +5,7 @@ This project is built using the following technologies :
 - ReactJS
 - Redux
 - Material UI
-- [Brewery DB] (https://www.brewerydb.com/developers) open API for developers
+- [Brewery DB](https://www.brewerydb.com/developers) open API for developers
 
 ## Running
 
