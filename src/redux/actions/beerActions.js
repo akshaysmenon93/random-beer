@@ -3,7 +3,7 @@ import {LOAD_RANDOM_BEER_SUCCESS, LOAD_BEER_DETAILS_SUCCESS, CLEAR_CURRENT_BEER}
 import {beginApiCall, endApiCall, apiError} from "./apiStatusActions"
 
 
-const corsUrl = `${ process.env.REACT_APP_CORS_HEADER }`
+const corsUrl = `${ process.env.REACT_APP_CORS_HEADER }` //are present in the .env file
 const baseUrl = `${ process.env.REACT_APP_BREWERY_DB_API }`
 const key = `${ process.env.REACT_APP_KEY }`
 
@@ -24,7 +24,7 @@ export function getRandomBeer ( withBreweries, hasLabels ) {
 
         function onError ( error ) {
             dispatch( endApiCall() ) //to end api call
-            dispatch( apiError() ) //updates redux store to display the fall back error component
+            dispatch( apiError() ) //updates apiCallsInProgress in redux store to display the fall back error component
         }
 
         try {
@@ -65,6 +65,6 @@ export function getBeerLabel ( beerId ) {
 
 export function clearCurrentBeer () {
     return ( dispatch ) => {
-        dispatch( {type: CLEAR_CURRENT_BEER} ) //action clears the beer object in redux state, triggering the useEffect hook in BeerController
+        dispatch( {type: CLEAR_CURRENT_BEER} ) //action clears the beer object in redux state
     }
 }

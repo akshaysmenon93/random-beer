@@ -190,3 +190,5 @@ BeerDetails.propTypes = {
 }
 
 export default WithLoader( BeerDetails )
+// the BeerDetails component is wrapped by a higher order component WithLoader.
+// This function returns the loading screen if there are any api calls in progress else it returns the component passed to it

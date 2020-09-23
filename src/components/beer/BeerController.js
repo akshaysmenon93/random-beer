@@ -37,7 +37,7 @@ const BeerControl = ( {currentBeer, isLoading, isApiError, actions} ) => {
     const classes = useStyles() //initialize all the classes
 
     //executed when the component is mounted
-    //If the 'currentBeer' prop is modified, the code inside is executed again
+    //If the 'currentBeer' prop is modified, the code inside is executed again (modified when user clicks the BEER ME! button)
     useEffect( () => {
         if ( currentBeer.length === 0 ) {
             actions.beerActions.getRandomBeer( "Y", "Y" ).then( beerInfo => {
@@ -45,13 +45,16 @@ const BeerControl = ( {currentBeer, isLoading, isApiError, actions} ) => {
             } )
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [ currentBeer ] )
+    }, [ currentBeer ] ) //currentBeer is added as a dependency. When its value changes, useEffectHook is executed
 
     //function to call api and fetch a random beer object
     function loadRandomBeer () {
-        actions.beerActions.clearCurrentBeer()
+        actions.beerActions.clearCurrentBeer() //dispatches action to clear the current beer, triggering useEffectHook
     }
 
+
+    //Renders presentational component
+    //Required information is passed as props to the BeerDetails presentational component
     return (
 
         <div className={classes.root}>
@@ -73,6 +76,7 @@ const BeerControl = ( {currentBeer, isLoading, isApiError, actions} ) => {
     )
 }
 
+//to make the redux store available to the component
 function mapStateToProps ( state ) {
     return {
         currentBeer: state.beer, //from the redux store
@@ -81,7 +85,7 @@ function mapStateToProps ( state ) {
     }
 }
 
-
+//to make the dispatch actions available to the component
 function mapDispatchToProps ( dispatch ) {
     return {
         actions: {

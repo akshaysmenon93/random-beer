@@ -66,8 +66,9 @@ const BreweryControl = ( {breweryId, breweryDetails, isLoading, isApiError, acti
     )
 }
 
+//to make the redux store available to the component
 function mapStateToProps ( state, ownProps ) {
-    const breweryId = ownProps.match.params.breweryId //fetch the brewery id from the url
+    const breweryId = ownProps.match.params.breweryId //fetch the brewery id from the url params
     return {
         breweryId: breweryId, //map the url param to the component props
         breweryDetails: state.brewery,//fetch the brewery object from the redux store
@@ -76,6 +77,7 @@ function mapStateToProps ( state, ownProps ) {
     }
 }
 
+//to make the redux store available to the component
 function mapDispatchToProps ( dispatch ) {
     return {
         actions: {
